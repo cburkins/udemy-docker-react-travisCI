@@ -1,0 +1,24 @@
+version: "3"
+services:
+    web:
+        build:
+            # Same as "build: ." ?
+            context: .
+            # allows for non-standard name for Dockerfile
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        volumes:
+            # placeholder since node_modules *only* exists inside container
+            - /app/node_modules
+            # map the local ($pwd) directory to the container:/app diretory
+            # When you look in container:/app, you'll see a dynamic link back to our build directory
+            - .:/app
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - /app/node_modules
+            - .:/app
+        command: ["npm", "run", "test"]
