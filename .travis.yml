@@ -1,4 +1,6 @@
 sudo: required
+
+# Tells travis that we need docker for our build
 services:
     - docker
 
