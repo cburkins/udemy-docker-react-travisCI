@@ -1,5 +1,8 @@
 sudo: required
 
+# Recommended addition from updates on Udemy course site
+language: generic
+
 # Tells travis that we need docker for our build
 services:
     - docker
