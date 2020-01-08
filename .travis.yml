@@ -13,3 +13,24 @@ before_install:
 
 script:
     - docker run -e CI=true cburkins/docker-react npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: "udemy-docker-react"
+    env: "UdemyDockerReact-env"
+    # Automatically created as part of ElasticBeanstalk app, have to search in S3 for it
+    bucket_name: elasticbeanstalk-us-east-1-745400479556
+    # Bucket "folder" won't be created, but use same as "app" above
+    bucket_path: "udemy-docker-react"
+    # Only deploy when changes are pushed to "master" branch, not other branches
+    on:
+        branch: master
+
+    # Be sure to give the AWS user the policy "AWSElasticBeanstalkFullAccess"
+    # These variables are stores in the repo settings within Travis CI
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    # access_key_id: $AWS_ACCESS_KEY
+    # secret_access_key:
+    #     secure: "$AWS_SECRET_KEY"
