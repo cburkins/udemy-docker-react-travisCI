@@ -17,7 +17,9 @@ script:
 deploy:
     provider: elasticbeanstalk
     region: us-east-1
+    # This is the name you chose for your Elastic Beanstalk Container
     app: "udemy-docker-react"
+    # AWS seems to choose this for you, easily found in Elastic Beanstalk dashboard
     env: "UdemyDockerReact-env"
     # Automatically created as part of ElasticBeanstalk app, have to search in S3 for it
     bucket_name: elasticbeanstalk-us-east-1-745400479556
@@ -31,6 +33,3 @@ deploy:
     # These variables are stores in the repo settings within Travis CI
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    # access_key_id: $AWS_ACCESS_KEY
-    # secret_access_key:
-    #     secure: "$AWS_SECRET_KEY"

@@ -10,6 +10,8 @@ RUN npm run build
 # "FROM" essentially terminates the previous block
 FROM nginx
 # ElasticBeanstalk will be specifically looking for this instruction
+# We're using nginx, which defaults to listening on port 80
+# This is equivalent of "docker run -p 80:80" 
 EXPOSE 80
 # /app/build (from previous build) contains the React static production build
 COPY --from=builder /app/build /usr/share/nginx/html
